@@ -1,221 +1,191 @@
 #include <iostream>
+#include <algorithm>    // for std::transform
+#include <cmath>		// for std::isnan
+#include <string> 
+#include <cstdlib>		
 
-class Converter {
-public:
-    virtual double toMetric(double value) = 0;
-    virtual double toImperial(double value) = 0;
-    virtual void description() const = 0;
-};
-
-class WeightConverter : public Converter {
-public:
-    double toMetric(double value) override {
-        return value * 0.453592; // pounds to kilograms
-    }
-
-    double toImperial(double value) override {
-        return value * 2.20462; // kilograms to pounds
-    }
-
-    void description() const override {
-        std::cout << "Weight Converter: Converts between pounds and kilograms." << std::endl;
-    }
-};
-
-class DistanceConverter : public Converter {
-public:
-    double toMetric(double value) override {
-        return value * 0.3048; // feet to meters
-    }
-
-    double toImperial(double value) override {
-        return value * 3.28084; // meters to feet
-    }
-
-    void description() const override {
-        std::cout << "Distance Converter: Converts between feet and meters." << std::endl;
-    }
-};
-
-class HeightConverter : public Converter {
-public:
-    double toMetric(double value) override {
-        return value * 0.0254; // inches to meters
-    }
-
-    double toImperial(double value) override {
-        return value * 39.3701; // meters to inches
-    }
-
-    void description() const override {
-        std::cout << "Height Converter: Converts between inches and meters." << std::endl;
-    }
-};
-
-class Calculator {
-public:
-    virtual double calculate(double val1, double val2) = 0;
-
-    void printResult(double result) {
-        std::cout << "Result: " << result << std::endl;
-    }
-
-    virtual void description() const = 0;
-
-    void printInterpretation(double result) { // new method added to base class 
-        std::cout << "Interpretation: " << interpretResult(result) << std::endl;
-    }
-
-protected:
-    virtual std::string interpretResult(double result) = 0;
-};
-
-class BMICalculator : public Calculator {
-public:
-    double calculate(double weight, double height) override {
-        return weight / (height * height);
-    }
-
-    std::string interpretResult(double result) override {
-        if (result < 18.5)
-            return "Underweight";
-        else if (result < 25)
-            return "Normal weight";
-        else if (result < 30)
-            return "Overweight";
-        else
-            return "Obese";
-    }
-
-    void description() const override {
-        std::cout << "BMI Calculator: Calculates Body Mass Index (BMI)." << std::endl;
-    }
-    //> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    void printInterpretation(double result) {
-        std::cout << "Interpretation: " << interpretResult(result) << std::endl;
-    }
-};
-
-class SpeedCalculator : public Calculator {
-public:
-    double calculate(double distance, double time) override {
-        return distance / time;
-    }
-
-    std::string interpretResult(double result) override {
-        if (result < 1)
-            return "Slow speed";
-        else if (result < 5)
-            return "Walking speed";
-        else if (result < 20)
-            return "Running speed";
-        else if (result < 40)
-            return "Biking speed";
-        else
-            return "Driving speed";
-    }
-
-    void description() const override {
-        std::cout << "Speed Calculator: Calculates speed." << std::endl;
-    }
-};
+#include "WeightConverter.h"
+#include "DistanceConverter.h"
+#include "HeightConverter.h"
+#include "BMICalculator.h"
+#include "SpeedCalculator.h"
+#include "displaymenu.h"
 
 int main() {
-    std::string unitSystem;
-    std::cout << "Choose your preferred unit system (imperial or metric): ";
-    std::cin >> unitSystem;
+	std::string unitSystem;								// local variable for unitSystem
 
-    Converter* weightConverter;
-    Converter* heightConverter;
-    Calculator* bmiCalculator;
-    Calculator* speedCalculator;
+	bool continueProgram = true; // Flag to control the loop
+	while (continueProgram) {
+			// User input for unit system
+			std::cout << "\nChoose your preferred unit system (imperial or metric / i or m): ";
+			std::cin >> unitSystem;
 
-    if (unitSystem == "imperial") {
-        weightConverter = new WeightConverter();
-        heightConverter = new HeightConverter();
-        bmiCalculator = new BMICalculator();
-        speedCalculator = new SpeedCalculator();
-    }
-    else if (unitSystem == "metric") {
-        weightConverter = new WeightConverter();
-        heightConverter = new HeightConverter();
-        bmiCalculator = new BMICalculator();
-        speedCalculator = new SpeedCalculator();
-    }
-    else {
-        std::cout << "Invalid unit system. Program will exit." << std::endl;
-        return 0;
-    }
+		std::system("cls");									// Clears the screen
+		
+		std::cout << "Unit System: " << unitSystem << std::endl;//display user unit system choice
 
-    weightConverter->description();
-    heightConverter->description();
+		displayMenu();										// Prints the menu
+		int choice;											// local variable for choice
+		std::cout << "Enter your choice: "; 			   // User input for choice
+		std::cin >> choice;
 
-    double weight, height;
-    std::cout << "Enter your weight: ";
-    std::cin >> weight;
-    std::cout << "Enter your height: ";
-    std::cin >> height;
+		// Clear input buffer
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    double metricWeight = weightConverter->toMetric(weight);
-    double metricHeight = heightConverter->toMetric(height);
+		switch (choice) {
+		case 1: //Convert Weight >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		{
+			break;
+		}
+		case 2: // Convert Distance >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		{
 
-    bmiCalculator->description();
-    double bmiResult = bmiCalculator->calculate(metricWeight, metricHeight);
+			break;
+		}
+		case 3: // BMI Calculator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		{
+			Converter* weightConverter = new WeightConverter();    // New instance of WeightConverter class
+			Converter* heightConverter = new HeightConverter();    // New instance of HeightConverter class 
+			Calculator* bmiCalculator = new BMICalculator();		// New instance of BMICalculator class
 
-    std::cout << "BMI: ";
-    bmiCalculator->printResult(bmiResult);
+			// User input validation for case-insensitivity and for i or m input
+			std::transform(unitSystem.begin(), unitSystem.end(), unitSystem.begin(), ::tolower);
+			if (unitSystem == "imperial" || unitSystem == "metric" || unitSystem == "i" || unitSystem == "m") {
 
-    bmiCalculator->printInterpretation(bmiResult);
+				weightConverter->description(); // Prints "Weight Converter: Converts between pounds and kilograms."
+				heightConverter->description(); // Prints "Height Converter: Converts between inches and meters."
 
-    DistanceConverter* distanceConverter;
-    if (unitSystem == "imperial") {
-        distanceConverter = new DistanceConverter();
+				// User input for weight and height 
+				double weight, height;                          // local variables for weight and height
 
-        distanceConverter->description();
-        double distance;
-        std::cout << "Enter a distance: ";
-        std::cin >> distance;
+				std::cout << "\nEnter your weight (lb/kg): ";
+				std::cin >> weight;                             // User input for weight
+				std::cout << "Enter your height (feet/meters): ";
+				std::cin >> height;							    // User input for height
 
-        double metricDistance = distanceConverter->toMetric(distance);
+				double bmiResult = 0;							 // local variable for bmiResult
+				std::string bmiInterpretation;				 // local variable for bmiInterpretation
 
-        speedCalculator->description();
-        double time;
-        std::cout << "Enter a time: ";
-        std::cin >> time;
+				if ((unitSystem == "imperial" || unitSystem == "i")
+					&& (weight > 0 && height > 0)
+					&& (!std::isnan(weight) && !std::isnan(height))) {
 
-        double speedResult = speedCalculator->calculate(metricDistance, time);
+					double metricWeight = weightConverter->toMetric(weight); // Converts weight to metric
+					double metricHeight = heightConverter->toMetric(height); // Converts height to metric
 
-        std::cout << "Speed: ";
-        speedCalculator->printResult(speedResult);
+					bmiCalculator->description();
+					bmiResult = bmiCalculator->calculate(metricWeight, metricHeight);///calculate BMI
+					bmiInterpretation = static_cast<BMICalculator*>(bmiCalculator)->interpretResult(bmiResult);
+				}
+				else if ((unitSystem == "metric" || unitSystem == "m")
+					&& (weight > 0 && height > 0)
+					&& (!std::isnan(weight) && !std::isnan(height))) {
 
-        speedCalculator->printInterpretation(speedResult);
+					bmiCalculator->description();				// Prints "BMI Calculator: Calculates Body Mass Index (BMI)."
+					bmiResult = bmiCalculator->calculate(weight, height);///calculate BMI
+					bmiInterpretation = static_cast<BMICalculator*>(bmiCalculator)->interpretResult(bmiResult);
+				}
+				else {
+					std::cout << "\nInvalid inputs. Program will exit." << std::endl;
+					delete weightConverter;
+					delete heightConverter;
+					delete bmiCalculator;
+					return 0;
+				}
+				delete weightConverter;						// Deletes weightConverter instance
+				delete heightConverter;						// Deletes heightConverter instance
 
-        double imperialSpeed = distanceConverter->toImperial(speedResult);
-        std::cout << "Speed (imperial units): " << imperialSpeed << std::endl;
+				std::cout << "BMI: ";
+				bmiCalculator->printResult(bmiResult, unitSystem, true);		// Prints "Result: <bmiResult>"
+				std::cout << "Interpretation: " << bmiInterpretation << std::endl;
 
-        delete distanceConverter;
-    }
-    else if (unitSystem == "metric") {
-        speedCalculator->description();
-        double distance, time;
-        std::cout << "Enter a distance: ";
-        std::cin >> distance;
-        std::cout << "Enter a time: ";
-        std::cin >> time;
+				delete bmiCalculator;						// Deletes bmiCalculator instance
+			}
+			else {
+				std::cout << "Invalid unit system. Program will exit." << std::endl;
+				return 0;
+			}
+			break;											// Breaks out of case 3
+		}
 
-        double speedResult = speedCalculator->calculate(distance, time);
+		case 4: // Speed Calculator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		{
+			// User input for speed calculation
+			Calculator* speedCalculator = new SpeedCalculator();	// New instance of SpeedCalculator class
+			Converter* distanceConverter = new DistanceConverter(); //instance of DistanceConverter class
 
-        std::cout << "Speed: ";
-        speedCalculator->printResult(speedResult);
+			speedCalculator->description();			    // Prints "Speed Calculator: Calculates speed."
+			distanceConverter->description();           // Prints distance converter description
 
-        speedCalculator->printInterpretation(speedResult);
-    }
+			double distance;                            // local variable for distance
+			std::cout << "\nEnter a distance: ";
+			std::cin >> distance;
 
-    delete weightConverter;
-    delete heightConverter;
-    delete bmiCalculator;
-    delete speedCalculator;
+			double time;								// local variable for time
+			std::cout << "Enter a time in seconds: ";
+			std::cin >> time;
 
-    return 0;
-}
+			if ((unitSystem == "imperial" || unitSystem == "i")
+				&& (distance > 0 && time > 0)
+				&& (!std::isnan(distance) && !std::isnan(time))) {
 
+				double metricDistance = distanceConverter->toMetric(distance); // Converts distance to metric
+
+				double speedResult = speedCalculator->calculate(metricDistance, time); // Calculates speed in m/s
+				std::string speedInterpretation = static_cast<SpeedCalculator*>(speedCalculator)->interpretResult(speedResult);
+
+				std::cout << "\nSpeed: ";
+				double imperialSpeed = distanceConverter->toImperial(speedResult);		// Converts speed to imperial
+				speedCalculator->printResult(imperialSpeed, unitSystem);				// Prints "Result: <speedResult>"
+				std::cout << "Interpretation: " << speedInterpretation << std::endl;	// Prints "Interpretation: <speedInterpretation>"
+
+				std::cout << "Speed (metric units): " << speedResult << " m/s (" << speedResult * 3.6 << " km/hr)" << std::endl;
+			}
+			else if ((unitSystem == "metric" || unitSystem == "m")
+				&& (distance > 0 && time > 0)
+				&& (!std::isnan(distance) && !std::isnan(time))) {
+
+				double speedResult = speedCalculator->calculate(distance, time); // Calculates speed in m/s
+				std::string speedInterpretation = static_cast<SpeedCalculator*>(speedCalculator)->interpretResult(speedResult);
+
+				std::cout << "\nSpeed: ";
+				speedCalculator->printResult(speedResult, unitSystem);  // Prints "Result: <speedResult>"
+				std::cout << "Interpretation: " << speedInterpretation << std::endl;
+
+				double imperialSpeed = distanceConverter->toImperial(speedResult); // Converts speed to imperial
+				std::cout << "Speed (imperial units): " << imperialSpeed << "ft/s (" << imperialSpeed * 15 / 22 << " mph)" << std::endl;
+			}
+			else {
+				std::cout << "\nInvalid inputs. Program will exit." << std::endl;
+				delete distanceConverter;
+				delete speedCalculator;
+				return 0;
+			}
+			delete distanceConverter;					// Deletes distanceConverter instance
+			delete speedCalculator;						// Deletes speedCalculator instance
+
+			break;
+		}
+
+		case 5: // Exit >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		{
+			return 0;
+		}
+		default: // Invalid input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		{
+			std::cout << "\nInvalid input. Program will exit." << std::endl;
+			break;
+		}
+		}			// End of switch statement
+
+			// Ask the user if they want to continue or quit
+		std::string choice2 = "";
+		std::cout << "\nDo you want to continue? (yes/no) or (y/n): ";
+		std::cin >> choice2;
+		std::transform(choice2.begin(), choice2.end(), choice2.begin(), ::tolower); // Converts continue to lowercase
+		if (choice2 != "yes" || choice2 != "y") {
+			continueProgram = false;
+		}
+	}				// End of while loop
+	return 0;
+}					// End of main function

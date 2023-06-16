@@ -131,6 +131,7 @@
     <ClCompile Include="calculator.cpp" />
     <ClCompile Include="converter.cpp" />
     <ClCompile Include="converter.h" />
+    <ClCompile Include="displaymenu.cpp" />
     <ClCompile Include="distanceconverter.cpp" />
     <ClCompile Include="heightconverter.cpp" />
     <ClCompile Include="main.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="bmicalculator.h" />
     <ClInclude Include="calculator.h" />
+    <ClInclude Include="displaymenu.h" />
     <ClInclude Include="distanceconverter.h" />
     <ClInclude Include="heightconverter.h" />
     <ClInclude Include="speedcalculator.h" />
