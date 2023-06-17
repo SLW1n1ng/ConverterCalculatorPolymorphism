@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="bmicalculator.cpp" />
     <ClCompile Include="calculator.cpp" />
+    <ClCompile Include="clearInputBuffer.cpp" />
     <ClCompile Include="converter.cpp" />
     <ClCompile Include="converter.h" />
     <ClCompile Include="displaymenu.cpp" />
@@ -141,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="bmicalculator.h" />
     <ClInclude Include="calculator.h" />
+    <ClInclude Include="clearInputBuffer.h" />
     <ClInclude Include="displaymenu.h" />
     <ClInclude Include="distanceconverter.h" />
     <ClInclude Include="heightconverter.h" />

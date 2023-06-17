@@ -11,4 +11,6 @@ void Calculator::printResult(double result, const std::string& unitSystem, bool 
 	else if (unitSystem == "metric" || unitSystem == "m") {
 		std::cout << "Result: " << result << " m/s (" << result * 3.6 << " km/hr)" << std::endl;
 	}
+	std::string interpretation = interpretResult(result);
+	std::cout << "Interpretation: " << interpretation << std::endl;
 }

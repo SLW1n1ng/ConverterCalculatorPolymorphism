@@ -45,6 +45,9 @@
     <ClCompile Include="displaymenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clearInputBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calculator.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="displaymenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearInputBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
