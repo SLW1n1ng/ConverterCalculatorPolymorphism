@@ -48,6 +48,21 @@
     <ClCompile Include="clearInputBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="displayunitsystemmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getunitsysteminput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getuserinputforvariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="doesuserwanttocontinue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmenuinput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calculator.h">
@@ -72,6 +87,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clearInputBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="displayunitsystemmenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getunitsyteminput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getuserinputforvariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="doesuserwanttocontinue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getmenuinput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

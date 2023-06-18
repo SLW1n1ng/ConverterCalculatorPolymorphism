@@ -7,7 +7,7 @@ class Calculator {
 public:
 	virtual ~Calculator() {}
 	virtual double calculate(double val1, double val2) = 0;
-	void printResult(double result, const std::string& unitSystem = "", bool printBMI = false);
+	void printResult(double result, int unitSystem, int imperial, int metric, bool printBMI = false);
 	virtual void description() const = 0;
 
 protected:

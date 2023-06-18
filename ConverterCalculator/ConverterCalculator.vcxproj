@@ -133,7 +133,12 @@
     <ClCompile Include="converter.cpp" />
     <ClCompile Include="converter.h" />
     <ClCompile Include="displaymenu.cpp" />
+    <ClCompile Include="displayunitsystemmenu.cpp" />
     <ClCompile Include="distanceconverter.cpp" />
+    <ClCompile Include="doesuserwanttocontinue.cpp" />
+    <ClCompile Include="getmenuinput.cpp" />
+    <ClCompile Include="getunitsysteminput.cpp" />
+    <ClCompile Include="getuserinputforvariable.cpp" />
     <ClCompile Include="heightconverter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="speedcalculator.cpp" />
@@ -144,7 +149,12 @@
     <ClInclude Include="calculator.h" />
     <ClInclude Include="clearInputBuffer.h" />
     <ClInclude Include="displaymenu.h" />
+    <ClInclude Include="displayunitsystemmenu.h" />
     <ClInclude Include="distanceconverter.h" />
+    <ClInclude Include="doesuserwanttocontinue.h" />
+    <ClInclude Include="getmenuinput.h" />
+    <ClInclude Include="getunitsyteminput.h" />
+    <ClInclude Include="getuserinputforvariable.h" />
     <ClInclude Include="heightconverter.h" />
     <ClInclude Include="speedcalculator.h" />
     <ClInclude Include="weightconverter.h" />

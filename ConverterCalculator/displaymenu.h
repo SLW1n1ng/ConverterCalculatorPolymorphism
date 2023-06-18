@@ -4,4 +4,3 @@
 void displayMenu();
 
 #endif  // DISPLAYMENU_H
-#pragma once
