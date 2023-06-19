@@ -19,23 +19,19 @@
 #include "getmenuinput.h"
 
 int main() {
-	bool continueProgram = true; // Flag to control the loop
+	bool continueProgram = true;					// Flag to control the loop
 	while (continueProgram) {
 
-		std::system("cls");									// Clears the screen
-
-		displayMenu();										// Prints the menu
-		int choice;											// local variable for choice
-		getMenuInput(choice);								// User input for choice
-
-		clearInputBuffer();									// Clear input buffer
+		displayMenu();								// Prints the menu
+		int choice;									// local variable for choice
+		getMenuInput(choice);						// User input for menu items
 
 		int unitSystem;								// local variable for unitSystem
 		int imperial = 1;							// local variable for imperial
 		int metric = 2;								// local variable for metric
 
 		switch (choice) {
-		case 1: //Convert Weight >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		case 1: // 1. Convert Weight >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		{
 			Converter* weightConverter = new WeightConverter();	// New instance of WeightConverter class
 
@@ -60,7 +56,7 @@ int main() {
 			delete weightConverter;									// Deletes weightConverter instance
 			break;
 		}
-		case 2: // Convert Distance >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		case 2: // 2. Convert Distance >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		{
 			Converter* distanceConverter = new DistanceConverter(); // New instance of DistanceConverter class
 
@@ -85,10 +81,10 @@ int main() {
 			delete distanceConverter;								// Deletes distanceConverter instance
 			break;
 		}
-		case 3: // BMI Calculator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		case 3: // 3. BMI Calculator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		{
-			Converter* weightConverter = new WeightConverter();    // New instance of WeightConverter class
-			Converter* heightConverter = new HeightConverter();    // New instance of HeightConverter class 
+			Converter* weightConverter = new WeightConverter();		// New instance of WeightConverter class
+			Converter* heightConverter = new HeightConverter();		// New instance of HeightConverter class 
 			Calculator* bmiCalculator = new BMICalculator();		// New instance of BMICalculator class
 
 			displayUnitSystemMenu();							// Prints the unit system menu
@@ -125,7 +121,7 @@ int main() {
 			delete bmiCalculator;							// Deletes bmiCalculator instance
 			break;											// Breaks out of case 3
 		}
-		case 4: // Speed Calculator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		case 4: // 4. Speed Calculator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		{
 			Calculator* speedCalculator = new SpeedCalculator();	// New instance of SpeedCalculator class
 			Converter* distanceConverter = new DistanceConverter(); //instance of DistanceConverter class
@@ -144,8 +140,8 @@ int main() {
 
 			if (unitSystem == imperial) {
 
-				double metricDistance = distanceConverter->toMetric(distance); // Converts distance to metric
-				double speedResult = speedCalculator->calculate(metricDistance, time); // Calculates speed in m/s
+				double metricDistance = distanceConverter->toMetric(distance);			// Converts distance to metric
+				double speedResult = speedCalculator->calculate(metricDistance, time);	// Calculates speed in m/s
 				double imperialSpeed = distanceConverter->toImperial(speedResult);		// Converts speed to imperial
 
 				std::cout << "\nSpeed: ";
@@ -168,16 +164,12 @@ int main() {
 
 			break;
 		}
-		case 5: // Exit >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		case 5: // 5. Exit >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		{
 			return 0;
 		}
-		default: // Invalid input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-		{
-			std::cout << "\nInvalid input. Choose again." << std::endl;
-		}
-		}
-		doesUserWantToContinue(continueProgram);			// Asks user if they want to continue
+		}												
+		doesUserWantToContinue(continueProgram);	// Asks user if they want to continue
 	}
 	return 0;
 }

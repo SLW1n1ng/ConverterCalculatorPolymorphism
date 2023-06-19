@@ -6,12 +6,14 @@
 
 void doesUserWantToContinue(bool& continueProgram)
 {
-    clearInputBuffer();                                             // Clears input buffer
-    std::string choice2 = "";
+    std::string choice2;
     std::cout << "\nDo you want to continue? (yes/no) or (y/n): ";
-    std::getline(std::cin, choice2);                                // User input for choice2
-    std::transform(choice2.begin(), choice2.end(), choice2.begin(), ::tolower);
-    if (choice2 != "yes" && choice2 != "y") {                        // If choice2 is not "yes" or "y"
-        continueProgram = false;
+    // Validate inputs against numerical values and inputs that are not yes/y or No/n
+    while (!(std::cin >> choice2) || (choice2 != "yes" && choice2 != "y" && choice2 != "no" && choice2 != "n")) {
+        std::cout << "Invalid input. Enter (yes/no) or (y/n):";
+        clearInputBuffer();
+    }
+    if (choice2 == "no" || choice2 == "n" ) {
+        continueProgram = false; // Exit the while loop
     }
 }

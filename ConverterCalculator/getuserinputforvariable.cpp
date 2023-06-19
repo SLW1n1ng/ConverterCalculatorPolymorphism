@@ -10,4 +10,5 @@ void getUserInputForVariable(const char* variableName, double& variable)
 		clearInputBuffer();
 		std::cout << "Invalid " << variableName << " input. Enter a number: ";
 	}
+	clearInputBuffer();	// Clear input buffer
 }

@@ -11,6 +11,7 @@ void Calculator::printResult(double result, int unitSystem, int imperial, int me
 	else if (unitSystem == metric) { // 1 = Imperial, 2 = Metric
 		std::cout << "Result: " << result << " m/s (" << result * 3.6 << " km/hr)" << std::endl;
 	}
+
 	std::string interpretation = interpretResult(result); // Derived class will implement this function
 	std::cout << "Interpretation: " << interpretation << std::endl;
 }

@@ -29,6 +29,43 @@ The project consists of the following classes:
    - Virtual member functions: `calculate`, `printResult`, `description`, `interpretResult`.
    - Derived classes: `BMICalculator`, `SpeedCalculator`.
 
+Project Title: Unit Conversion and Calculation System
+
+Overview:
+This project is a command-line application that provides various unit conversion
+and calculation functionalities. It is built using Object-Oriented Programming
+(OOP) principles, making effective use of dynamic binding and static binding.
+
+OOP Principles:
+The project follows the principles of encapsulation, inheritance, and polymorphism.
+It uses classes and objects to encapsulate related data and behavior.
+Inheritance is employed to create specialized classes, such as WeightConverter, 
+DistanceConverter, BMICalculator, and SpeedCalculator, inheriting common functionality
+from the base Converter and Calculator classes. Polymorphism is achieved through 
+the use of virtual functions, allowing different implementations
+to be invoked based on the actual type of objects.
+
+Dynamic Binding:
+Dynamic binding is used in the project through virtual functions. 
+The base Converter and Calculator classes declare virtual functions 
+like toMetric, toImperial, calculate, and description. 
+This enables dynamic binding when these functions are called on objects
+of derived classes. For example, a WeightConverter object dynamically
+binds the toMetric and toImperial functions based on the actual type of the object.
+
+Static Binding:
+Static binding occurs in the project for non-virtual member functions.
+The description function in Converter and Calculator classes uses static binding,
+as the specific function to call is determined at compile-time based on the static type of the object.
+
+Code Organization:
+The project is organized into multiple source files, each responsible
+for a specific component or functionality. The clearInputBuffer, displaymenu,
+getunitsysteminput, getuserinputforvariable, doesuserwanttocontinue, 
+and getmenuinput files handle user input and interaction. The Converter 
+and Calculator classes provide the base functionality, while specialized converter
+(WeightConverter, DistanceConverter) and calculators (BMICalculator, SpeedCalculator) extend the base classes.
+
 Usage
 -----
 
